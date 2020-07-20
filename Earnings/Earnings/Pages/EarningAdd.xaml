@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Earnings.Pages.EarningAdd"
+             NavigationPage.HasNavigationBar="True"
+             Title="Nowy Zarobek">
+    <StackLayout VerticalOptions="CenterAndExpand">
+        <StackLayout Orientation="Horizontal" Padding="20,20,20,0">
+            <Label Text="Ilość godzin: " FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
+            <Label Text="Zarobek za godzinę: " FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Padding="20,5,20,10">
+            <Picker FontSize="Medium" x:Name="time" Title="Ilość godzin" SelectedIndexChanged="time_SelectedIndexChanged" HorizontalOptions="CenterAndExpand">
+                <Picker.Items>
+                    <x:String>1h</x:String>
+                    <x:String>2h</x:String>
+                    <x:String>3h</x:String>
+                    <x:String>4h</x:String>
+                    <x:String>5h</x:String>
+                    <x:String>6h</x:String>
+                    <x:String>7h</x:String>
+                    <x:String>8h</x:String>
+                </Picker.Items>
+            </Picker>
+            <Picker FontSize="Medium" x:Name="paid" Title="Zarobek za godzinę" SelectedIndexChanged="paid_SelectedIndexChanged" HorizontalOptions="CenterAndExpand">
+                <Picker.Items>
+                    <x:String>10zł</x:String>
+                    <x:String>12zł</x:String>
+                    <x:String>15zł</x:String>
+                    <x:String>20zł</x:String>
+                </Picker.Items>
+            </Picker>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Padding="20,20,20,10">
+            <Label HorizontalOptions="CenterAndExpand" Text="Dzień:" FontSize="Medium"/>
+            <Label HorizontalOptions="CenterAndExpand" Text="Miesiąc:" FontSize="Medium"/>
+            <Label HorizontalOptions="CenterAndExpand" Text=" Rok: " FontSize="Medium"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Padding="20,0,20,20">
+            <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="day" Title="Dzień" SelectedIndexChanged="day_SelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                    <x:String>6</x:String>
+                    <x:String>7</x:String>
+                    <x:String>8</x:String>
+                    <x:String>9</x:String>
+                    <x:String>10</x:String>
+                    <x:String>11</x:String>
+                    <x:String>12</x:String>
+                    <x:String>13</x:String>
+                    <x:String>14</x:String>
+                    <x:String>15</x:String>
+                    <x:String>16</x:String>
+                    <x:String>17</x:String>
+                    <x:String>18</x:String>
+                    <x:String>19</x:String>
+                    <x:String>20</x:String>
+                    <x:String>21</x:String>
+                    <x:String>22</x:String>
+                    <x:String>23</x:String>
+                    <x:String>24</x:String>
+                    <x:String>25</x:String>
+                    <x:String>26</x:String>
+                    <x:String>27</x:String>
+                    <x:String>28</x:String>
+                    <x:String>29</x:String>
+                    <x:String>30</x:String>
+                    <x:String>31</x:String>
+                </Picker.Items>
+            </Picker>
+            <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="month" Title="Miesiąc" SelectedIndexChanged="month_SelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                    <x:String>6</x:String>
+                    <x:String>7</x:String>
+                    <x:String>8</x:String>
+                    <x:String>9</x:String>
+                    <x:String>10</x:String>
+                    <x:String>11</x:String>
+                    <x:String>12</x:String>
+                </Picker.Items>
+            </Picker>
+            <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="year" Title="  Rok  " SelectedIndexChanged="year_SelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>2017</x:String>
+                    <x:String>2018</x:String>
+                    <x:String>2019</x:String>
+                    <x:String>2020</x:String>
+                    <x:String>2021</x:String>
+                    <x:String>2022</x:String>
+                    <x:String>2023</x:String>
+                    <x:String>2024</x:String>
+                    <x:String>2025</x:String>
+                </Picker.Items>
+            </Picker>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Padding="75,10,75,10">
+            <Button Text="ANULUJ" Clicked="CancelClicked" HorizontalOptions="CenterAndExpand"/>
+            <Button Text="ZAPISZ" Clicked="AddClicked" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
