@@ -4,8 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Earnings.Pages.AddonsAdd"
-             Title="Nowe Dodatki">
+             x:Class="Earnings.Pages.AddonsAdd">
     <StackLayout VerticalOptions="CenterAndExpand">
         <StackLayout Orientation="Horizontal" Padding="20,20,20,0">
             <Label Text="Ilość:" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
@@ -21,7 +20,7 @@
             <Label HorizontalOptions="CenterAndExpand" Text=" Rok: " FontSize="Medium"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Padding="20,0,20,20">
-            <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="day" Title="Dzień" SelectedIndexChanged="day_SelectedIndexChanged">
+            <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="day" Title="Dzień" SelectedIndexChanged="day_SelectedIndexChanged" SelectedIndex="0">
                 <Picker.Items>
                     <x:String>1</x:String>
                     <x:String>2</x:String>
@@ -74,6 +73,8 @@
             </Picker>
             <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="year" Title="  Rok  " SelectedIndexChanged="year_SelectedIndexChanged">
                 <Picker.Items>
+                    <x:String>2015</x:String>
+                    <x:String>2016</x:String>
                     <x:String>2017</x:String>
                     <x:String>2018</x:String>
                     <x:String>2019</x:String>
@@ -83,12 +84,23 @@
                     <x:String>2023</x:String>
                     <x:String>2024</x:String>
                     <x:String>2025</x:String>
+                    <x:String>2026</x:String>
+                    <x:String>2027</x:String>
+                    <x:String>2028</x:String>
+                    <x:String>2029</x:String>
+                    <x:String>2030</x:String>
+                    <x:String>2031</x:String>
+                    <x:String>2032</x:String>
+                    <x:String>2033</x:String>
+                    <x:String>2034</x:String>
+                    <x:String>2035</x:String>
                 </Picker.Items>
             </Picker>
         </StackLayout>
-        <StackLayout Orientation="Horizontal" Padding="75,10,75,10">
+        <StackLayout Orientation="Horizontal" Padding="40,10,40,10">
             <Button Text="ANULUJ" Clicked="CancelClicked" HorizontalOptions="CenterAndExpand"/>
             <Button Text="ZAPISZ" Clicked="AddClicked" HorizontalOptions="CenterAndExpand"/>
+            <Button Padding="10" Text="ZAPISZ++" Clicked="AddPlusClicked" HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

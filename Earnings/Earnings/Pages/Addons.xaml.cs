@@ -68,7 +68,7 @@ namespace Earnings.Pages
 		}
 		private void AddClicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new NavigationPage(new AddonsAdd(addons)));
+			Navigation.PushModalAsync(new AddonsAdd(addons));
 		}
 
 		private void RemoveClicked(object sender, EventArgs e)
