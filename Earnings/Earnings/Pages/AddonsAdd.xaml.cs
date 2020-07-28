@@ -49,6 +49,8 @@ namespace Earnings.Pages
 			day.SelectedItem = "1";
 			month.SelectedItem = "1";
 			year.SelectedItem = "2020";
+			monthChosen = false;
+			yearChosen = false;
 		}
 		private void SetList(ObservableCollection<AddonsModel> addons)
 		{
@@ -99,12 +101,6 @@ namespace Earnings.Pages
 			_year = int.Parse(year.SelectedItem.ToString());
 			yearChosen = true;
 		}
-		private void CapitalizeReasonText()
-		{
-			char[] text = reason.Text.ToCharArray();
-			text[0] = char.ToUpper(text[0]);
-			reason.Text = new string(text);
-		}
 		private void AddItem()
 		{
 			if (price.Text == null)
@@ -117,7 +113,6 @@ namespace Earnings.Pages
 				DisplayAlert("UWAGA!", "Napisz za co jest ten dodatek!", "OK");
 				return;
 			}
-			CapitalizeReasonText();
 			AddonsModel addon = new AddonsModel() { Cash = int.Parse(price.Text), Day = _day, Month = _month, Year = _year, Name = reason.Text };
 			if (_month == 2 && _day > 28 || _month == 4 && _day == 31 || _month == 6 && _day == 31 || _month == 9 && _day == 31 || _month == 11 && _day == 31)
 			{

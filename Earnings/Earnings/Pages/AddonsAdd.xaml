@@ -12,7 +12,7 @@
         </StackLayout>
         <StackLayout Orientation="Horizontal" Padding="20,5,20,10">
             <Entry x:Name="price" FontSize="Medium" HorizontalOptions="CenterAndExpand" Placeholder="    Ilość    " Keyboard="Numeric"/>
-            <Entry x:Name="reason" FontSize="Medium" HorizontalOptions="CenterAndExpand" Placeholder="     Za co     "/>
+            <Entry x:Name="reason" FontSize="Medium" HorizontalOptions="CenterAndExpand" Placeholder="     Za co     " Keyboard="Chat"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Padding="20,20,20,10">
             <Label HorizontalOptions="CenterAndExpand" Text="Dzień:" FontSize="Medium"/>
