@@ -23,9 +23,14 @@ namespace Earnings.Pages
 		private void InitDB()
 		{
 			_conn = DependencyService.Get<ISQLite>().GetConnection();
-			if (addons == null || addons.Count == 0)
+			try
 			{
-				addons.Clear();
+				_conn.Query<AddonsModel>("select * from AddonsModel");
+			}
+			catch
+			{
+				if (addons == null || addons.Count == 0)
+					addons.Clear();
 				_conn.CreateTable<AddonsModel>();
 			}
 			addons = new ObservableCollection<AddonsModel>(_conn.Query<AddonsModel>("select * from AddonsModel"));

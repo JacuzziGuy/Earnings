@@ -23,9 +23,14 @@ namespace Earnings.Pages
 		private void InitDB()
 		{
 			_conn = DependencyService.Get<ISQLite>().GetConnection();
-			if (earns != null || earns.Count != 0)
+			try
 			{
-				earns.Clear();
+				_conn.Query<Earns>("select * from Earns");
+			}
+			catch
+			{
+				if (earns != null || earns.Count != 0)
+					earns.Clear();
 				_conn.CreateTable<Earns>();
 			}
 			earns = new ObservableCollection<Earns>(_conn.Query<Earns>("select * from Earns"));

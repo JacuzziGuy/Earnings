@@ -22,9 +22,14 @@ namespace Earnings.Pages
 		private void InitDB()
 		{
 			_conn = DependencyService.Get<ISQLite>().GetConnection();
-			if(expenses == null || expenses.Count == 0)
+			try
 			{
-				expenses.Clear();
+				_conn.Query<Expenses>("select * from Expenses");
+			}
+			catch
+			{
+				if (expenses == null || expenses.Count == 0)
+					expenses.Clear();
 				_conn.CreateTable<Expenses>();
 			}
 			expenses = new ObservableCollection<Expenses>(_conn.Query<Expenses>("select * from Expenses"));

@@ -54,7 +54,7 @@ namespace Earnings.Pages
 			else
 			{
 				Navigation.PopModalAsync();
-				Navigation.PushModalAsync(new AddonsAdd(_day, _month, _year, _addons, true));
+				Navigation.PushModalAsync(new NavigationPage(new AddonsAdd(_day, _month, _year, _addons, true)));
 			}
 		}
 		private void SetDateStart()
