@@ -39,7 +39,6 @@ namespace Earnings.Pages
 				Total.ex += expenses[i].Cash;
 			}
 		}
-
 		private void ExpensesList_ItemTapped(object sender, ItemTappedEventArgs e)
 		{
 			var item = e.Item as Expenses;
@@ -67,9 +66,12 @@ namespace Earnings.Pages
 		}
 		private void AddClicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new NavigationPage(new AddExpense(expenses)));
+			Navigation.PushModalAsync(new NavigationPage(new AddExpense(expenses, false)));
 		}
-
+		private void AddFClicked(object sender, EventArgs e)
+		{
+			Navigation.PushModalAsync(new NavigationPage(new AddExpense(expenses, true)));
+		}
 		private void RemoveClicked(object sender, EventArgs e)
 		{
 			Total.ex -= selectedItem.Cash;
@@ -82,6 +84,11 @@ namespace Earnings.Pages
 			{
 				prevCount = expenses.Count;
 				expenses = SortItems(expenses);
+				Total.ex = 0;
+				for (int i = 0; i < expenses.Count; i++)
+				{
+					Total.ex += expenses[i].Cash;
+				}
 				base.OnAppearing();
 			}
 		}

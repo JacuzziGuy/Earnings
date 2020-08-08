@@ -7,6 +7,7 @@
              x:Class="Earnings.Pages.Earned"
              Title="Zarobki">
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="SZYBKIE DODAWANIE" Clicked="AddFClicked"/>
         <ToolbarItem Text="DODAJ" Clicked="AddClicked"/>
     </ContentPage.ToolbarItems>
     <StackLayout>

@@ -9,19 +9,32 @@ namespace Earnings.Pages
 {
 	public partial class AddonsAdd : ContentPage
 	{
-		int _day = 1, _month = 1, _year = 2020;
-		bool monthChosen = false, yearChosen = false, created = false;
+		int _day = int.Parse(System.DateTime.Now.ToString("dd"))
+			, _month = int.Parse(System.DateTime.Now.ToString("MM"))
+			, _year = int.Parse(System.DateTime.Now.ToString("yyyy"));
+		bool monthChosen = false, yearChosen = false, created = false, fastSave;
 		SQLiteConnection _conn;
 		ObservableCollection<AddonsModel> _addons = new ObservableCollection<AddonsModel>();
-		public AddonsAdd(ObservableCollection<AddonsModel> addons)
+		public AddonsAdd(ObservableCollection<AddonsModel> addons, bool fSave)
 		{
+			fastSave = fSave;
 			InitializeComponent();
+			SetSave();
 			SetDateStart();
 			SetList(addons);
 		}
-		public AddonsAdd(int Day, int Month, int Year, ObservableCollection<AddonsModel> addons)
+		private void SetSave()
 		{
+			if (fastSave)
+				saveButton.Clicked += AddFClicked;
+			else
+				saveButton.Clicked += AddClicked;
+		}
+		public AddonsAdd(int Day, int Month, int Year, ObservableCollection<AddonsModel> addons, bool fSave)
+		{
+			fastSave = fSave;
 			InitializeComponent();
+			SetSave();
 			GetDate(Day, Month, Year);
 			SetList(addons);
 		}
@@ -33,7 +46,7 @@ namespace Earnings.Pages
 			else
 				Navigation.PopModalAsync();
 		}
-		private void AddPlusClicked(object sender, System.EventArgs e)
+		private void AddFClicked(object sender, System.EventArgs e)
 		{
 			AddItem();
 			if (created == false)
@@ -41,14 +54,14 @@ namespace Earnings.Pages
 			else
 			{
 				Navigation.PopModalAsync();
-				Navigation.PushModalAsync(new AddonsAdd(_day, _month, _year, _addons));
+				Navigation.PushModalAsync(new AddonsAdd(_day, _month, _year, _addons, true));
 			}
 		}
 		private void SetDateStart()
 		{
-			day.SelectedItem = "1";
-			month.SelectedItem = "1";
-			year.SelectedItem = "2020";
+			day.SelectedIndex = _day - 1;
+			month.SelectedIndex = _month - 1;
+			year.SelectedItem = _year.ToString();
 			monthChosen = false;
 			yearChosen = false;
 		}
@@ -73,8 +86,8 @@ namespace Earnings.Pages
 			_day = Day;
 			_month = Month;
 			_year = Year;
-			day.SelectedItem = _day.ToString();
-			month.SelectedItem = _month.ToString();
+			day.SelectedIndex = _day - 1;
+			month.SelectedIndex = _month - 1;
 			year.SelectedItem = _year.ToString();
 			monthChosen = true;
 			yearChosen = true;

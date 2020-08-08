@@ -4,6 +4,7 @@ using Earnings.Models;
 using SQLite;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Rg.Plugins.Popup.Services;
 
 namespace Earnings.Pages
 {
@@ -39,7 +40,6 @@ namespace Earnings.Pages
 				Total.e += earns[i].Cash;
 			}
 		}
-
 		private void ShowHidden(object sender, ItemTappedEventArgs e)
 		{
 			var item = e.Item as Earns;
@@ -67,9 +67,12 @@ namespace Earnings.Pages
 		}
 		private void AddClicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new NavigationPage(new EarningAdd(earns)));
+			Navigation.PushModalAsync(new NavigationPage(new EarningAdd(earns, false)));
 		}
-
+		private void AddFClicked(object sender, EventArgs e)
+		{
+			Navigation.PushModalAsync(new NavigationPage(new EarningAdd(earns, true)));
+		}
 		private void RemoveClicked(object sender, EventArgs e)
 		{
 			Total.e -= selectedEarn.Cash;
@@ -82,6 +85,11 @@ namespace Earnings.Pages
 			{
 				prevCount = earns.Count;
 				earns = SortItems(earns);
+				Total.e = 0;
+				for (int i = 0; i < earns.Count; i++)
+				{
+					Total.e += earns[i].Cash;
+				}
 				base.OnAppearing();
 			}
 		}

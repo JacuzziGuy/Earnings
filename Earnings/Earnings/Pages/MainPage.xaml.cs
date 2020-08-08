@@ -1,4 +1,6 @@
 ﻿using Earnings.Pages;
+using System;
+using System.IO;
 using Xamarin.Forms;
 
 namespace Earnings
@@ -9,6 +11,7 @@ namespace Earnings
 		{
 			InitializeComponent();
 			InitTabs();
+			SetPickerValues();
 		}
 		private void InitTabs()
 		{
@@ -24,6 +27,27 @@ namespace Earnings
 			Children.Add(earned);
 			Children.Add(spent);
 			Children.Add(addons);
+		}
+		private void SetPickerValues()
+		{
+			try
+			{
+				File.ReadAllLines(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/EarningData/PaidValues.txt");
+			}
+			catch
+			{
+				string[] paidList = new string[] { "10zł", "12zł", "15zł", "20zł" };
+				File.WriteAllLines(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/EarningData/PaidValues.txt", paidList);
+			}
+			try
+			{
+				File.ReadAllLines(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/EarningData/TimeValues.txt");
+			}
+			catch
+			{
+				string[] timeList = new string[] { "1h", "2h", "3h", "4h", "5h", "6h", "7h", "8h" };
+				File.WriteAllLines(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/EarningData/TimeValues.txt", timeList);
+			}
 		}
 	}
 }
