@@ -23,14 +23,9 @@ namespace Earnings.Pages
 		private void InitDB()
 		{
 			_conn = DependencyService.Get<ISQLite>().GetConnection();
-			try
+			if (addons == null || addons.Count == 0)
 			{
-				_conn.Query<AddonsModel>("select * from AddonsModel");
-			}
-			catch
-			{
-				if (addons == null || addons.Count == 0)
-					addons.Clear();
+				addons.Clear();
 				_conn.CreateTable<AddonsModel>();
 			}
 			addons = new ObservableCollection<AddonsModel>(_conn.Query<AddonsModel>("select * from AddonsModel"));
@@ -45,6 +40,7 @@ namespace Earnings.Pages
 				Total.a += addons[i].Cash;
 			}
 		}
+
 		private void AddonsModelList_ItemTapped(object sender, ItemTappedEventArgs e)
 		{
 			var item = e.Item as AddonsModel;
@@ -72,29 +68,22 @@ namespace Earnings.Pages
 		}
 		private void AddClicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new NavigationPage(new AddonsAdd(addons, false)));
+			Navigation.PushModalAsync(new AddonsAdd(addons));
 		}
-		private void AddFClicked(object sender, EventArgs e)
-		{
-			Navigation.PushModalAsync(new NavigationPage(new AddonsAdd(addons, true)));
-		}
+
 		private void RemoveClicked(object sender, EventArgs e)
 		{
 			Total.a -= selectedItem.Cash;
 			_conn.Delete(selectedItem);
 			addons.Remove(selectedItem);
 		}
+
 		protected override void OnAppearing()
 		{
 			if (prevCount != addons.Count)
 			{
 				prevCount = addons.Count;
 				addons = SortItems(addons);
-				Total.a = 0;
-				for (int i = 0; i < addons.Count; i++)
-				{
-					Total.a += addons[i].Cash;
-				}
 				base.OnAppearing();
 			}
 		}

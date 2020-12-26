@@ -4,8 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Earnings.Pages.AddonsAdd"
-             Title="Nowy Dodatek">
+             x:Class="Earnings.Pages.AddonsAdd">
     <StackLayout VerticalOptions="CenterAndExpand">
         <StackLayout Orientation="Horizontal" Padding="20,20,20,0">
             <Label Text="Ilość:" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
@@ -23,15 +22,15 @@
         <StackLayout Orientation="Horizontal" Padding="20,0,20,20">
             <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="day" Title="Dzień" SelectedIndexChanged="day_SelectedIndexChanged" SelectedIndex="0">
                 <Picker.Items>
-                    <x:String>01</x:String>
-                    <x:String>02</x:String>
-                    <x:String>03</x:String>
-                    <x:String>04</x:String>
-                    <x:String>05</x:String>
-                    <x:String>06</x:String>
-                    <x:String>07</x:String>
-                    <x:String>08</x:String>
-                    <x:String>09</x:String>
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                    <x:String>6</x:String>
+                    <x:String>7</x:String>
+                    <x:String>8</x:String>
+                    <x:String>9</x:String>
                     <x:String>10</x:String>
                     <x:String>11</x:String>
                     <x:String>12</x:String>
@@ -58,15 +57,15 @@
             </Picker>
             <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="month" Title="Miesiąc" SelectedIndexChanged="month_SelectedIndexChanged">
                 <Picker.Items>
-                    <x:String>01</x:String>
-                    <x:String>02</x:String>
-                    <x:String>03</x:String>
-                    <x:String>04</x:String>
-                    <x:String>05</x:String>
-                    <x:String>06</x:String>
-                    <x:String>07</x:String>
-                    <x:String>08</x:String>
-                    <x:String>09</x:String>
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                    <x:String>6</x:String>
+                    <x:String>7</x:String>
+                    <x:String>8</x:String>
+                    <x:String>9</x:String>
                     <x:String>10</x:String>
                     <x:String>11</x:String>
                     <x:String>12</x:String>
@@ -98,9 +97,10 @@
                 </Picker.Items>
             </Picker>
         </StackLayout>
-        <StackLayout Orientation="Horizontal" Padding="75,10,75,10">
+        <StackLayout Orientation="Horizontal" Padding="40,10,40,10">
             <Button Text="ANULUJ" Clicked="CancelClicked" HorizontalOptions="CenterAndExpand"/>
-            <Button x:Name="saveButton" Text="ZAPISZ" HorizontalOptions="CenterAndExpand"/>
+            <Button Text="ZAPISZ" Clicked="AddClicked" HorizontalOptions="CenterAndExpand"/>
+            <Button Padding="10" Text="ZAPISZ++" Clicked="AddPlusClicked" HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

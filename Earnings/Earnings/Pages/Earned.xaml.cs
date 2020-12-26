@@ -4,7 +4,6 @@ using Earnings.Models;
 using SQLite;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Rg.Plugins.Popup.Services;
 
 namespace Earnings.Pages
 {
@@ -23,14 +22,9 @@ namespace Earnings.Pages
 		private void InitDB()
 		{
 			_conn = DependencyService.Get<ISQLite>().GetConnection();
-			try
+			if (earns != null || earns.Count != 0)
 			{
-				_conn.Query<Earns>("select * from Earns");
-			}
-			catch
-			{
-				if (earns != null || earns.Count != 0)
-					earns.Clear();
+				earns.Clear();
 				_conn.CreateTable<Earns>();
 			}
 			earns = new ObservableCollection<Earns>(_conn.Query<Earns>("select * from Earns"));
@@ -45,6 +39,7 @@ namespace Earnings.Pages
 				Total.e += earns[i].Cash;
 			}
 		}
+
 		private void ShowHidden(object sender, ItemTappedEventArgs e)
 		{
 			var item = e.Item as Earns;
@@ -72,12 +67,9 @@ namespace Earnings.Pages
 		}
 		private void AddClicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new NavigationPage(new EarningAdd(earns, false)));
+			Navigation.PushModalAsync(new NavigationPage(new EarningAdd(earns)));
 		}
-		private void AddFClicked(object sender, EventArgs e)
-		{
-			Navigation.PushModalAsync(new NavigationPage(new EarningAdd(earns, true)));
-		}
+
 		private void RemoveClicked(object sender, EventArgs e)
 		{
 			Total.e -= selectedEarn.Cash;
@@ -90,11 +82,6 @@ namespace Earnings.Pages
 			{
 				prevCount = earns.Count;
 				earns = SortItems(earns);
-				Total.e = 0;
-				for (int i = 0; i < earns.Count; i++)
-				{
-					Total.e += earns[i].Cash;
-				}
 				base.OnAppearing();
 			}
 		}

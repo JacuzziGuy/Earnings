@@ -7,7 +7,6 @@
              x:Class="Earnings.Pages.Spent"
              Title="Wydatki">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="SZYBKIE DODAWANIE" Clicked="AddFClicked"/>
         <ToolbarItem Text="DODAJ" Clicked="AddClicked"/>
     </ContentPage.ToolbarItems>
     <ListView x:Name="expensesList" HasUnevenRows="True">

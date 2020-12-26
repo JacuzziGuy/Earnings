@@ -22,14 +22,9 @@ namespace Earnings.Pages
 		private void InitDB()
 		{
 			_conn = DependencyService.Get<ISQLite>().GetConnection();
-			try
+			if(expenses == null || expenses.Count == 0)
 			{
-				_conn.Query<Expenses>("select * from Expenses");
-			}
-			catch
-			{
-				if (expenses == null || expenses.Count == 0)
-					expenses.Clear();
+				expenses.Clear();
 				_conn.CreateTable<Expenses>();
 			}
 			expenses = new ObservableCollection<Expenses>(_conn.Query<Expenses>("select * from Expenses"));
@@ -44,6 +39,7 @@ namespace Earnings.Pages
 				Total.ex += expenses[i].Cash;
 			}
 		}
+
 		private void ExpensesList_ItemTapped(object sender, ItemTappedEventArgs e)
 		{
 			var item = e.Item as Expenses;
@@ -71,12 +67,9 @@ namespace Earnings.Pages
 		}
 		private void AddClicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new NavigationPage(new AddExpense(expenses, false)));
+			Navigation.PushModalAsync(new NavigationPage(new AddExpense(expenses)));
 		}
-		private void AddFClicked(object sender, EventArgs e)
-		{
-			Navigation.PushModalAsync(new NavigationPage(new AddExpense(expenses, true)));
-		}
+
 		private void RemoveClicked(object sender, EventArgs e)
 		{
 			Total.ex -= selectedItem.Cash;
@@ -89,11 +82,6 @@ namespace Earnings.Pages
 			{
 				prevCount = expenses.Count;
 				expenses = SortItems(expenses);
-				Total.ex = 0;
-				for (int i = 0; i < expenses.Count; i++)
-				{
-					Total.ex += expenses[i].Cash;
-				}
 				base.OnAppearing();
 			}
 		}

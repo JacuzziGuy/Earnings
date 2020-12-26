@@ -13,7 +13,7 @@
         </StackLayout>
         <StackLayout Orientation="Horizontal" Padding="20,5,20,10">
             <Entry x:Name="price" FontSize="Medium" HorizontalOptions="CenterAndExpand" Placeholder="    Cena    " Keyboard="Numeric"/>
-            <Entry x:Name="reason" FontSize="Medium" HorizontalOptions="CenterAndExpand" Placeholder="     Wydatek     " Keyboard="Chat"/>
+            <Entry x:Name="reason" FontSize="Medium" HorizontalOptions="CenterAndExpand" Placeholder="     Wydatek     "/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Padding="20,20,20,10">
             <Label HorizontalOptions="CenterAndExpand" Text="Dzień:" FontSize="Medium"/>
@@ -23,15 +23,15 @@
         <StackLayout Orientation="Horizontal" Padding="20,0,20,20">
             <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="day" Title="Dzień" SelectedIndexChanged="day_SelectedIndexChanged">
                 <Picker.Items>
-                    <x:String>01</x:String>
-                    <x:String>02</x:String>
-                    <x:String>03</x:String>
-                    <x:String>04</x:String>
-                    <x:String>05</x:String>
-                    <x:String>06</x:String>
-                    <x:String>07</x:String>
-                    <x:String>08</x:String>
-                    <x:String>09</x:String>
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                    <x:String>6</x:String>
+                    <x:String>7</x:String>
+                    <x:String>8</x:String>
+                    <x:String>9</x:String>
                     <x:String>10</x:String>
                     <x:String>11</x:String>
                     <x:String>12</x:String>
@@ -58,15 +58,15 @@
             </Picker>
             <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="month" Title="Miesiąc" SelectedIndexChanged="month_SelectedIndexChanged">
                 <Picker.Items>
-                    <x:String>01</x:String>
-                    <x:String>02</x:String>
-                    <x:String>03</x:String>
-                    <x:String>04</x:String>
-                    <x:String>05</x:String>
-                    <x:String>06</x:String>
-                    <x:String>07</x:String>
-                    <x:String>08</x:String>
-                    <x:String>09</x:String>
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                    <x:String>6</x:String>
+                    <x:String>7</x:String>
+                    <x:String>8</x:String>
+                    <x:String>9</x:String>
                     <x:String>10</x:String>
                     <x:String>11</x:String>
                     <x:String>12</x:String>
@@ -74,8 +74,6 @@
             </Picker>
             <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="year" Title="  Rok  " SelectedIndexChanged="year_SelectedIndexChanged">
                 <Picker.Items>
-                    <x:String>2015</x:String>
-                    <x:String>2016</x:String>
                     <x:String>2017</x:String>
                     <x:String>2018</x:String>
                     <x:String>2019</x:String>
@@ -85,22 +83,12 @@
                     <x:String>2023</x:String>
                     <x:String>2024</x:String>
                     <x:String>2025</x:String>
-                    <x:String>2026</x:String>
-                    <x:String>2027</x:String>
-                    <x:String>2028</x:String>
-                    <x:String>2029</x:String>
-                    <x:String>2030</x:String>
-                    <x:String>2031</x:String>
-                    <x:String>2032</x:String>
-                    <x:String>2033</x:String>
-                    <x:String>2034</x:String>
-                    <x:String>2035</x:String>
                 </Picker.Items>
             </Picker>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Padding="75,10,75,10">
             <Button Text="ANULUJ" Clicked="CancelClicked" HorizontalOptions="CenterAndExpand"/>
-            <Button x:Name="saveButton" Text="ZAPISZ" HorizontalOptions="CenterAndExpand"/>
+            <Button Text="ZAPISZ" Clicked="AddClicked" HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

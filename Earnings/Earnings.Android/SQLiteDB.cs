@@ -1,7 +1,6 @@
 ﻿using SQLite;
 using Xamarin.Forms;
 using Earnings.Droid;
-using System.IO;
 
 [assembly: Dependency(typeof(SQLiteDB))]
 namespace Earnings.Droid
@@ -11,18 +10,9 @@ namespace Earnings.Droid
 		public SQLiteConnection GetConnection()
 		{
 			var dbName = "EarningsDB.sqlite";
-			var dbPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + "/EarningData";
-			if (Directory.Exists(dbPath))
-			{
-				var conn = new SQLiteConnection($"{dbPath}/{dbName}");
-				return conn;
-			}
-			else
-			{
-				Directory.CreateDirectory(dbPath);
-				var conn = new SQLiteConnection($"{dbPath}/{dbName}");
-				return conn;
-			}
+			var dbPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+			var conn = new SQLiteConnection($"{dbPath}/{dbName}");
+			return conn;
 		}
     }
 }

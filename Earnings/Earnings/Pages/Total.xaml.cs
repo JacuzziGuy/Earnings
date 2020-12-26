@@ -1,7 +1,5 @@
 ﻿using Earnings.Models;
-using Rg.Plugins.Popup.Services;
 using SQLite;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,10 +7,10 @@ namespace Earnings.Pages
 {
 	public partial class Total : ContentPage
 	{
-		public static float e = 0;
+		public static int e = 0;
 		public static int ex = 0;
 		public static int a = 0;
-		public static float cur = 0;
+		public static int cur = 0;
 		public Total()
 		{
 			InitializeComponent();
