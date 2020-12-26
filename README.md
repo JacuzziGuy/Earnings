@@ -1,3 +1,3 @@
 # Earnings
-Aplikacja o  zarobkach
+Aplikacja o  zarobkach.
 Nie skończona, z błędami
