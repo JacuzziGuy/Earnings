@@ -9,7 +9,6 @@ namespace Earnings.Pages
 	public partial class ExpenseAdd : ContentPage
 	{
 		int _day = DateTime.Now.Day, _month = DateTime.Now.Month, _year = DateTime.Now.Year;
-		bool monthChosen = false, yearChosen = false;
 		SQLiteConnection db = DBModel.DBPath();
 		ObservableCollection<ExpensesModel> _expenses = new ObservableCollection<ExpensesModel>();
 		public ExpenseAdd(ObservableCollection<ExpensesModel> expenses)
@@ -46,22 +45,16 @@ namespace Earnings.Pages
 		private void day_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_day = int.Parse(day.SelectedItem.ToString());
-			if (monthChosen == false)
-				month.Focus();
 		}
 
 		private void month_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_month = int.Parse(month.SelectedItem.ToString());
-			monthChosen = true;
-			if (yearChosen == false)
-				year.Focus();
 		}
 
 		private void year_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_year = int.Parse(year.SelectedItem.ToString());
-			yearChosen = true;
 		}
 	}
 }

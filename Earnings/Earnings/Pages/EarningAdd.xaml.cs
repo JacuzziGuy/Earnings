@@ -9,7 +9,6 @@ namespace Earnings.Pages
 	public partial class EarningAdd : ContentPage
 	{
 		int _paid = 0, _time = 0, _day = DateTime.Now.Day, _month = DateTime.Now.Month, _year = DateTime.Now.Year;
-		bool paidChosen = false, timeChosen = false, dayChosen = false, monthChosen = false, yearChosen = false;
 		ObservableCollection<EarningsModel> _earns = new ObservableCollection<EarningsModel>();
 		SQLiteConnection db = DBModel.DBPath();
 		public EarningAdd(ObservableCollection<EarningsModel> earns)
@@ -37,45 +36,25 @@ namespace Earnings.Pages
 		{
 			Navigation.PopModalAsync();
 		}
-
 		private void paid_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_paid = int.Parse(paid.SelectedItem.ToString().Replace("zł", ""));
-			paidChosen = true;
-			if (dayChosen == false)
-				day.Focus();
 		}
-
 		private void time_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_time = int.Parse(time.SelectedItem.ToString().Replace("h", ""));
-			timeChosen = true;
-			if (paidChosen == false)
-				paid.Focus();
 		}
-
 		private void day_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_day = int.Parse(day.SelectedItem.ToString());
-			dayChosen = true;
-			if (monthChosen == false)
-				month.Focus();
 		}
-
 		private void month_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_month = int.Parse(month.SelectedItem.ToString());
-			monthChosen = true;
-			if (yearChosen == false)
-				year.Focus();
 		}
-
 		private void year_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_year = int.Parse(year.SelectedItem.ToString());
-			yearChosen = true;
-			if (timeChosen == false)
-				time.Focus();
 		}
 	}
 }
