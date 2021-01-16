@@ -18,7 +18,7 @@ namespace Earnings
 			earned.Title = "Zarobki";
 			NavigationPage addons = new NavigationPage(new Addons());
 			addons.Title = "Dodatki";
-			NavigationPage spent = new NavigationPage(new Spent());
+			NavigationPage spent = new NavigationPage(new Expenses());
 			spent.Title = "Wydatki";
 			Children.Add(total);
 			Children.Add(earned);

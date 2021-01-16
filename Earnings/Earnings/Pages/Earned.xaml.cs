@@ -9,9 +9,9 @@ namespace Earnings.Pages
 {
 	public partial class Earned : ContentPage
 	{
-		ObservableCollection<Earns> earns = new ObservableCollection<Earns>();
+		ObservableCollection<EarningsModel> earns = new ObservableCollection<EarningsModel>();
 		int prevCount = 0;
-		Earns selectedEarn = new Earns();
+		EarningsModel selectedEarn = new EarningsModel();
 		SQLiteConnection db = DBModel.DBPath();
 		public Earned()
 		{
@@ -23,11 +23,11 @@ namespace Earnings.Pages
 		{
 			try
 			{
-				earns = new ObservableCollection<Earns>(db.Query<Earns>("select * from Earns"));
+				earns = new ObservableCollection<EarningsModel>(db.Query<EarningsModel>("select * from EarningsModel"));
 			}
 			catch
 			{
-				db.CreateTable<Earns>();
+				db.CreateTable<EarningsModel>();
 			}
 		}
 		private void InitList()
@@ -39,12 +39,12 @@ namespace Earnings.Pages
 
 		private void ShowHidden(object sender, ItemTappedEventArgs e)
 		{
-			var item = e.Item as Earns;
+			var item = e.Item as EarningsModel;
 			int index = e.ItemIndex;
 			selectedEarn = item;
 			ChangeVisibility(item, index);
 		}
-		private void ChangeVisibility(Earns item, int index)
+		private void ChangeVisibility(EarningsModel item, int index)
 		{
 			for (int i = 0; i < earns.Count; i++)
 			{
@@ -57,7 +57,7 @@ namespace Earnings.Pages
 			item.IsVisible = !item.IsVisible;
 			UpdateItems(item, index);
 		}
-		private void UpdateItems(Earns item, int index)
+		private void UpdateItems(EarningsModel item, int index)
 		{
 			earns.Remove(item);
 			earns.Insert(index, item);
@@ -82,11 +82,11 @@ namespace Earnings.Pages
 				base.OnAppearing();
 			}
 		}
-		private ObservableCollection<Earns> SortItems(ObservableCollection<Earns> orderList)
+		private ObservableCollection<EarningsModel> SortItems(ObservableCollection<EarningsModel> orderList)
 		{
-			ObservableCollection<Earns> temp = new ObservableCollection<Earns>(orderList.OrderBy(i=>i.Day).OrderBy(i => i.Month).OrderBy(i=>i.Year).Reverse());
+			ObservableCollection<EarningsModel> temp = new ObservableCollection<EarningsModel>(orderList.OrderBy(i=>i.Day).OrderBy(i => i.Month).OrderBy(i=>i.Year).Reverse());
 			orderList.Clear();
-			foreach(Earns e in temp)
+			foreach(EarningsModel e in temp)
 				orderList.Add(e);
 			return orderList;
         }

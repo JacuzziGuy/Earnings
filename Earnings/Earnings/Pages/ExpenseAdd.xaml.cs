@@ -6,22 +6,29 @@ using Xamarin.Forms;
 
 namespace Earnings.Pages
 {
-	public partial class AddExpense : ContentPage
+	public partial class ExpenseAdd : ContentPage
 	{
 		int _day = DateTime.Now.Day, _month = DateTime.Now.Month, _year = DateTime.Now.Year;
 		bool monthChosen = false, yearChosen = false;
 		SQLiteConnection db = DBModel.DBPath();
-		ObservableCollection<Expenses> _expenses = new ObservableCollection<Expenses>();
-		public AddExpense(ObservableCollection<Expenses> expenses)
+		ObservableCollection<ExpensesModel> _expenses = new ObservableCollection<ExpensesModel>();
+		public ExpenseAdd(ObservableCollection<ExpensesModel> expenses)
 		{
 			InitializeComponent();
 			_expenses = expenses;
+			InitPage();
+		}
+		private void InitPage()
+		{
+			day.SelectedItem = _day.ToString();
+			month.SelectedItem = _month.ToString();
+			year.SelectedItem = _year.ToString();
 		}
 		private void AddClicked(object sender, System.EventArgs e)
 		{
 			try
 			{
-				Expenses expense = new Expenses() { Cash = int.Parse(price.Text), Day = _day, Month = _month, Year = _year, Name = reason.Text };
+				ExpensesModel expense = new ExpensesModel() { Cash = int.Parse(price.Text), Day = _day, Month = _month, Year = _year, Name = reason.Text };
 				Total.ex += expense.Cash;
 				db.Insert(expense);
 				_expenses.Add(expense);

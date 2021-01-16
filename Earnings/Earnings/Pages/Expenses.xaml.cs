@@ -7,13 +7,13 @@ using Xamarin.Forms;
 
 namespace Earnings.Pages
 {
-	public partial class Spent : ContentPage
+	public partial class Expenses : ContentPage
 	{
-		ObservableCollection<Expenses> expenses = new ObservableCollection<Expenses>();
+		ObservableCollection<ExpensesModel> expenses = new ObservableCollection<ExpensesModel>();
 		int prevCount = 0;
-		Expenses selectedItem = new Expenses();
+		ExpensesModel selectedItem = new ExpensesModel();
 		SQLiteConnection db = DBModel.DBPath();
-		public Spent()
+		public Expenses()
 		{
 			InitializeComponent();
 			InitDB();
@@ -23,12 +23,11 @@ namespace Earnings.Pages
 		{
 			try
 			{
-				expenses = new ObservableCollection<Expenses>(db.Query<Expenses>("select * from Expenses"));
-
+				expenses = new ObservableCollection<ExpensesModel>(db.Query<ExpensesModel>("select * from ExpensesModel"));
 			}
 			catch
 			{
-				db.CreateTable<Expenses>();
+				db.CreateTable<ExpensesModel>();
 			}
 		}
 		private void InitList()
@@ -40,12 +39,12 @@ namespace Earnings.Pages
 
 		private void ExpensesList_ItemTapped(object sender, ItemTappedEventArgs e)
 		{
-			var item = e.Item as Expenses;
+			var item = e.Item as ExpensesModel;
 			int index = e.ItemIndex;
 			selectedItem = item;
 			ChangeVisibility(item, index);
 		}
-		private void ChangeVisibility(Expenses item, int index)
+		private void ChangeVisibility(ExpensesModel item, int index)
 		{
 			for (int i = 0; i < expenses.Count; i++)
 			{
@@ -58,14 +57,14 @@ namespace Earnings.Pages
 			item.IsVisible = !item.IsVisible;
 			UpdateItems(item, index);
 		}
-		private void UpdateItems(Expenses item, int index)
+		private void UpdateItems(ExpensesModel item, int index)
 		{
 			expenses.Remove(item);
 			expenses.Insert(index, item);
 		}
 		private void AddClicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new NavigationPage(new AddExpense(expenses)));
+			Navigation.PushModalAsync(new NavigationPage(new ExpenseAdd(expenses)));
 		}
 
 		private void RemoveClicked(object sender, EventArgs e)
@@ -83,11 +82,11 @@ namespace Earnings.Pages
 				base.OnAppearing();
 			}
 		}
-		private ObservableCollection<Expenses> SortItems(ObservableCollection<Expenses> orderList)
+		private ObservableCollection<ExpensesModel> SortItems(ObservableCollection<ExpensesModel> orderList)
 		{
-			ObservableCollection<Expenses> temp = new ObservableCollection<Expenses>(orderList.OrderBy(i => i.Day).OrderBy(i => i.Month).OrderBy(i => i.Year).Reverse());
+			ObservableCollection<ExpensesModel> temp = new ObservableCollection<ExpensesModel>(orderList.OrderBy(i => i.Day).OrderBy(i => i.Month).OrderBy(i => i.Year).Reverse());
 			orderList.Clear();
-			foreach (Expenses e in temp)
+			foreach (ExpensesModel e in temp)
 				orderList.Add(e);
 			return orderList;
 		}

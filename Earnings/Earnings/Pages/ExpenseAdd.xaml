@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Earnings.Pages.AddExpense"
+             x:Class="Earnings.Pages.ExpenseAdd"
              Title="Nowy Wydatek">
     <StackLayout VerticalOptions="CenterAndExpand">
         <StackLayout Orientation="Horizontal" Padding="20,20,20,0">

@@ -2,7 +2,7 @@
 
 namespace Earnings.Models
 {
-	public class Earns
+	public class EarningsModel
 	{
 		[AutoIncrement, PrimaryKey]
 		public int Id { get; set; }

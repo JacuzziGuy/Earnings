@@ -46,11 +46,9 @@ namespace Earnings.Pages
 		}
 		private void SetDateStart()
 		{
-			day.SelectedItem = "1";
-			month.SelectedItem = "1";
-			year.SelectedItem = "2020";
-			monthChosen = false;
-			yearChosen = false;
+			day.SelectedItem = _day.ToString();
+			month.SelectedItem = _month.ToString();
+			year.SelectedItem = _year.ToString();
 		}
 		private void SetList(ObservableCollection<AddonsModel> addons)
 		{

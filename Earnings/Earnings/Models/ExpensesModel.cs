@@ -1,7 +1,7 @@
 ﻿using SQLite;
 namespace Earnings.Models
 {
-	public class Expenses
+	public class ExpensesModel
 	{
 		[AutoIncrement, PrimaryKey]
 		public int Id { get; set; }

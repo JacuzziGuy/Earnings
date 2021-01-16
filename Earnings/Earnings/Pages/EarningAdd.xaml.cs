@@ -8,20 +8,26 @@ namespace Earnings.Pages
 {
 	public partial class EarningAdd : ContentPage
 	{
-		int _paid = 0, _time = 0, _day = 1, _month = 1, _year = 2020;
+		int _paid = 0, _time = 0, _day = DateTime.Now.Day, _month = DateTime.Now.Month, _year = DateTime.Now.Year;
 		bool paidChosen = false, timeChosen = false, dayChosen = false, monthChosen = false, yearChosen = false;
-		ObservableCollection<Earns> _earns = new ObservableCollection<Earns>();
+		ObservableCollection<EarningsModel> _earns = new ObservableCollection<EarningsModel>();
 		SQLiteConnection db = DBModel.DBPath();
-		public EarningAdd(ObservableCollection<Earns> earns)
+		public EarningAdd(ObservableCollection<EarningsModel> earns)
 		{
 			InitializeComponent();
 			_earns = earns;
+			InitPage();
 		}
-
+		private void InitPage()
+		{
+			day.SelectedItem = _day.ToString();
+			month.SelectedItem = _month.ToString();
+			year.SelectedItem = _year.ToString();
+		}
 		private void AddClicked(object sender, EventArgs e)
 		{
 			int cash = _paid * _time;
-			Earns earn = new Earns { Cash = cash, IsVisible = false, Day = _day, Month = _month, Year = _year };
+			EarningsModel earn = new EarningsModel { Cash = cash, IsVisible = false, Day = _day, Month = _month, Year = _year };
 			Total.e += cash;
 			db.Insert(earn);
 			_earns.Add(earn);
