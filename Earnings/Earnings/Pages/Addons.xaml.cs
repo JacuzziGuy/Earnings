@@ -13,7 +13,7 @@ namespace Earnings.Pages
 		ObservableCollection<AddonsModel> addons = new ObservableCollection<AddonsModel>();
 		int prevCount = 0;
 		AddonsModel selectedItem = new AddonsModel();
-		SQLiteConnection _conn;
+		SQLiteConnection db = DBModel.DBPath();
 		public Addons()
 		{
 			InitializeComponent();
@@ -22,23 +22,20 @@ namespace Earnings.Pages
 		}
 		private void InitDB()
 		{
-			_conn = DependencyService.Get<ISQLite>().GetConnection();
-			if (addons == null || addons.Count == 0)
+			try
 			{
-				addons.Clear();
-				_conn.CreateTable<AddonsModel>();
+				addons = new ObservableCollection<AddonsModel>(db.Query<AddonsModel>("select * from AddonsModel"));
 			}
-			addons = new ObservableCollection<AddonsModel>(_conn.Query<AddonsModel>("select * from AddonsModel"));
+			catch
+			{
+				db.CreateTable<AddonsModel>();
+			}
 		}
 		private void InitList()
 		{
 			addonsList.ItemsSource = addons;
 			addonsList.ItemTapped += AddonsModelList_ItemTapped;
-			Total.a = 0;
-			for (int i = 0; i < addons.Count; i++)
-			{
-				Total.a += addons[i].Cash;
-			}
+			Total.a = addons.Sum(x=>x.Cash);
 		}
 
 		private void AddonsModelList_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -74,7 +71,7 @@ namespace Earnings.Pages
 		private void RemoveClicked(object sender, EventArgs e)
 		{
 			Total.a -= selectedItem.Cash;
-			_conn.Delete(selectedItem);
+			db.Delete(selectedItem);
 			addons.Remove(selectedItem);
 		}
 

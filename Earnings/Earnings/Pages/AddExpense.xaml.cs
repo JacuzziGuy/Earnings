@@ -8,15 +8,14 @@ namespace Earnings.Pages
 {
 	public partial class AddExpense : ContentPage
 	{
-		int _day = 1, _month = 1, _year = 2020;
+		int _day = DateTime.Now.Day, _month = DateTime.Now.Month, _year = DateTime.Now.Year;
 		bool monthChosen = false, yearChosen = false;
-		SQLiteConnection _conn;
+		SQLiteConnection db = DBModel.DBPath();
 		ObservableCollection<Expenses> _expenses = new ObservableCollection<Expenses>();
 		public AddExpense(ObservableCollection<Expenses> expenses)
 		{
 			InitializeComponent();
 			_expenses = expenses;
-			_conn = DependencyService.Get<ISQLite>().GetConnection();
 		}
 		private void AddClicked(object sender, System.EventArgs e)
 		{
@@ -24,7 +23,7 @@ namespace Earnings.Pages
 			{
 				Expenses expense = new Expenses() { Cash = int.Parse(price.Text), Day = _day, Month = _month, Year = _year, Name = reason.Text };
 				Total.ex += expense.Cash;
-				_conn.Insert(expense);
+				db.Insert(expense);
 				_expenses.Add(expense);
 				Navigation.PopModalAsync();
 			}

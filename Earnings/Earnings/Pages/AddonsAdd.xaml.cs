@@ -9,9 +9,9 @@ namespace Earnings.Pages
 {
 	public partial class AddonsAdd : ContentPage
 	{
-		int _day = 1, _month = 1, _year = 2020;
+		int _day = DateTime.Now.Day, _month = DateTime.Now.Month, _year = DateTime.Now.Year;
 		bool monthChosen = false, yearChosen = false, created = false;
-		SQLiteConnection _conn;
+		SQLiteConnection db = DBModel.DBPath();
 		ObservableCollection<AddonsModel> _addons = new ObservableCollection<AddonsModel>();
 		public AddonsAdd(ObservableCollection<AddonsModel> addons)
 		{
@@ -55,7 +55,6 @@ namespace Earnings.Pages
 		private void SetList(ObservableCollection<AddonsModel> addons)
 		{
 			_addons = addons;
-			_conn = DependencyService.Get<ISQLite>().GetConnection();
 		}
 		private void GetDate(int Day, int Month, int Year)
 		{
@@ -151,7 +150,7 @@ namespace Earnings.Pages
 				}
 			}
 			Total.a += addon.Cash;
-			_conn.Insert(addon);
+			db.Insert(addon);
 			_addons.Add(addon);
 			created = true;
 		}

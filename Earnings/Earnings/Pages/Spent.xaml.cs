@@ -12,7 +12,7 @@ namespace Earnings.Pages
 		ObservableCollection<Expenses> expenses = new ObservableCollection<Expenses>();
 		int prevCount = 0;
 		Expenses selectedItem = new Expenses();
-		SQLiteConnection _conn;
+		SQLiteConnection db = DBModel.DBPath();
 		public Spent()
 		{
 			InitializeComponent();
@@ -21,23 +21,21 @@ namespace Earnings.Pages
 		}
 		private void InitDB()
 		{
-			_conn = DependencyService.Get<ISQLite>().GetConnection();
-			if(expenses == null || expenses.Count == 0)
+			try
 			{
-				expenses.Clear();
-				_conn.CreateTable<Expenses>();
+				expenses = new ObservableCollection<Expenses>(db.Query<Expenses>("select * from Expenses"));
+
 			}
-			expenses = new ObservableCollection<Expenses>(_conn.Query<Expenses>("select * from Expenses"));
+			catch
+			{
+				db.CreateTable<Expenses>();
+			}
 		}
 		private void InitList()
 		{
 			expensesList.ItemsSource = expenses;
 			expensesList.ItemTapped += ExpensesList_ItemTapped;
-			Total.ex = 0;
-			for (int i = 0; i < expenses.Count; i++)
-			{
-				Total.ex += expenses[i].Cash;
-			}
+			Total.ex = expenses.Sum(x=>x.Cash);
 		}
 
 		private void ExpensesList_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -73,7 +71,7 @@ namespace Earnings.Pages
 		private void RemoveClicked(object sender, EventArgs e)
 		{
 			Total.ex -= selectedItem.Cash;
-			_conn.Delete(selectedItem);
+			db.Delete(selectedItem);
 			expenses.Remove(selectedItem);
 		}
 		protected override void OnAppearing()

@@ -1,7 +1,4 @@
-﻿using Earnings.Models;
-using SQLite;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace Earnings.Pages
 {

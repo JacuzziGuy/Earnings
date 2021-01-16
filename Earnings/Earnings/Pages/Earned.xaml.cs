@@ -12,7 +12,7 @@ namespace Earnings.Pages
 		ObservableCollection<Earns> earns = new ObservableCollection<Earns>();
 		int prevCount = 0;
 		Earns selectedEarn = new Earns();
-		private SQLiteConnection _conn;
+		SQLiteConnection db = DBModel.DBPath();
 		public Earned()
 		{
 			InitializeComponent();
@@ -21,23 +21,20 @@ namespace Earnings.Pages
 		}
 		private void InitDB()
 		{
-			_conn = DependencyService.Get<ISQLite>().GetConnection();
-			if (earns != null || earns.Count != 0)
+			try
 			{
-				earns.Clear();
-				_conn.CreateTable<Earns>();
+				earns = new ObservableCollection<Earns>(db.Query<Earns>("select * from Earns"));
 			}
-			earns = new ObservableCollection<Earns>(_conn.Query<Earns>("select * from Earns"));
+			catch
+			{
+				db.CreateTable<Earns>();
+			}
 		}
 		private void InitList()
 		{
 			earningsList.ItemsSource = earns;
 			earningsList.ItemTapped += ShowHidden;
-			Total.e = 0;
-			for (int i = 0; i < earns.Count; i++)
-			{
-				Total.e += earns[i].Cash;
-			}
+			Total.e = earns.Sum(x=>x.Cash);
 		}
 
 		private void ShowHidden(object sender, ItemTappedEventArgs e)
@@ -73,7 +70,7 @@ namespace Earnings.Pages
 		private void RemoveClicked(object sender, EventArgs e)
 		{
 			Total.e -= selectedEarn.Cash;
-			_conn.Delete(selectedEarn);
+			db.Delete(selectedEarn);
 			earns.Remove(selectedEarn);
 		}
 		protected override void OnAppearing()

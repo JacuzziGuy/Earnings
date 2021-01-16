@@ -11,12 +11,11 @@ namespace Earnings.Pages
 		int _paid = 0, _time = 0, _day = 1, _month = 1, _year = 2020;
 		bool paidChosen = false, timeChosen = false, dayChosen = false, monthChosen = false, yearChosen = false;
 		ObservableCollection<Earns> _earns = new ObservableCollection<Earns>();
-		private SQLiteConnection _conn;
+		SQLiteConnection db = DBModel.DBPath();
 		public EarningAdd(ObservableCollection<Earns> earns)
 		{
 			InitializeComponent();
 			_earns = earns;
-			_conn = DependencyService.Get<ISQLite>().GetConnection();
 		}
 
 		private void AddClicked(object sender, EventArgs e)
@@ -24,7 +23,7 @@ namespace Earnings.Pages
 			int cash = _paid * _time;
 			Earns earn = new Earns { Cash = cash, IsVisible = false, Day = _day, Month = _month, Year = _year };
 			Total.e += cash;
-			_conn.Insert(earn);
+			db.Insert(earn);
 			_earns.Add(earn);
 			Navigation.PopModalAsync();
 		}
