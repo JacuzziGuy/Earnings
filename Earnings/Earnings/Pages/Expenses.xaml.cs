@@ -4,6 +4,7 @@ using System.Linq;
 using SQLite;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Services;
 
 namespace Earnings.Pages
 {
@@ -64,7 +65,7 @@ namespace Earnings.Pages
 		}
 		private void AddClicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new NavigationPage(new ExpenseAdd(expenses)));
+			PopupNavigation.Instance.PushAsync(new ExpenseAdd(expenses));
 		}
 
 		private void RemoveClicked(object sender, EventArgs e)

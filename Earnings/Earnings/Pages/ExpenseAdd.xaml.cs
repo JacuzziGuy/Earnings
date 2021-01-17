@@ -3,10 +3,12 @@ using SQLite;
 using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 
 namespace Earnings.Pages
 {
-	public partial class ExpenseAdd : ContentPage
+	public partial class ExpenseAdd : PopupPage
 	{
 		int _day = DateTime.Now.Day, _month = DateTime.Now.Month, _year = DateTime.Now.Year;
 		SQLiteConnection db = DBModel.DBPath();
@@ -31,7 +33,7 @@ namespace Earnings.Pages
 				Total.ex += expense.Cash;
 				db.Insert(expense);
 				_expenses.Add(expense);
-				Navigation.PopModalAsync();
+				PopupNavigation.Instance.PopAsync();
 			}
 			catch 
 			{
@@ -40,7 +42,7 @@ namespace Earnings.Pages
 		}
 		private void CancelClicked(object sender, System.EventArgs e)
 		{
-			Navigation.PopModalAsync();
+			PopupNavigation.Instance.PopAsync();
 		}
 		private void day_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -55,6 +57,10 @@ namespace Earnings.Pages
 		private void year_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_year = int.Parse(year.SelectedItem.ToString());
+		}
+		protected override bool OnBackgroundClicked()
+		{
+			return false;
 		}
 	}
 }
