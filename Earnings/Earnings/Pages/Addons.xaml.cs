@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Rg.Plugins.Popup.Services;
 
 namespace Earnings.Pages
 {
@@ -65,7 +66,7 @@ namespace Earnings.Pages
 		}
 		private void AddClicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new AddonsAdd(addons));
+			PopupNavigation.Instance.PushAsync(new AddonsAdd(addons));
 		}
 
 		private void RemoveClicked(object sender, EventArgs e)

@@ -1,26 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Earnings.Pages.AddonsAdd">
-    <StackLayout VerticalOptions="CenterAndExpand">
-        <StackLayout Orientation="Horizontal" Padding="20,20,20,0">
-            <Label Text="Ilość:" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
-            <Label Text="Za co:" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" Padding="20,5,20,10">
-            <Entry x:Name="price" FontSize="Medium" HorizontalOptions="CenterAndExpand" Placeholder="    Ilość    " Keyboard="Numeric"/>
-            <Entry x:Name="reason" FontSize="Medium" HorizontalOptions="CenterAndExpand" Placeholder="     Za co     " Keyboard="Chat"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" Padding="20,20,20,10">
-            <Label HorizontalOptions="CenterAndExpand" Text="Dzień:" FontSize="Medium"/>
-            <Label HorizontalOptions="CenterAndExpand" Text="Miesiąc:" FontSize="Medium"/>
-            <Label HorizontalOptions="CenterAndExpand" Text=" Rok: " FontSize="Medium"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" Padding="20,0,20,20">
-            <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="day" Title="Dzień" SelectedIndexChanged="day_SelectedIndexChanged" SelectedIndex="0">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Margin="40">
+        <Label Text="Nowy dodatek" FontSize="Medium" TextColor="White" BackgroundColor="#669900" Padding="8"/>
+        <FlexLayout Padding="15,5,15,-5">
+            <Label Text="Ilość:" FontSize="Medium" FlexLayout.Grow="2"/>
+            <Label Text="Za co:" FontSize="Medium" FlexLayout.Grow="3"/>
+        </FlexLayout>
+        <FlexLayout Padding="15,0,15,0">
+            <Entry x:Name="price" FontSize="Medium" FlexLayout.Grow="2" Placeholder="Ilość..." Keyboard="Numeric"/>
+            <Entry x:Name="reason" FontSize="Medium" FlexLayout.Grow="3" Placeholder="Za co..." Keyboard="Chat"/>
+        </FlexLayout>
+        <FlexLayout Padding="15,5,15,0">
+            <Label FlexLayout.Grow="1" Text="Dzień:" FontSize="Medium"/>
+            <Label FlexLayout.Grow="1" Text="Miesiąc:" FontSize="Medium"/>
+            <Label FlexLayout.Grow="1" Text=" Rok: " FontSize="Medium"/>
+        </FlexLayout>
+        <FlexLayout Padding="15,0,15,5">
+            <Picker FontSize="Medium" FlexLayout.Grow="1" x:Name="day" Title="Dzień" SelectedIndexChanged="day_SelectedIndexChanged" SelectedIndex="0">
                 <Picker.Items>
                     <x:String>1</x:String>
                     <x:String>2</x:String>
@@ -55,7 +57,7 @@
                     <x:String>31</x:String>
                 </Picker.Items>
             </Picker>
-            <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="month" Title="Miesiąc" SelectedIndexChanged="month_SelectedIndexChanged">
+            <Picker FontSize="Medium" FlexLayout.Grow="1" x:Name="month" Title="Miesiąc" SelectedIndexChanged="month_SelectedIndexChanged">
                 <Picker.Items>
                     <x:String>1</x:String>
                     <x:String>2</x:String>
@@ -71,7 +73,7 @@
                     <x:String>12</x:String>
                 </Picker.Items>
             </Picker>
-            <Picker FontSize="Medium" HorizontalOptions="CenterAndExpand" x:Name="year" Title="  Rok  " SelectedIndexChanged="year_SelectedIndexChanged">
+            <Picker FontSize="Medium" FlexLayout.Grow="1" x:Name="year" Title="  Rok  " SelectedIndexChanged="year_SelectedIndexChanged">
                 <Picker.Items>
                     <x:String>2015</x:String>
                     <x:String>2016</x:String>
@@ -96,11 +98,10 @@
                     <x:String>2035</x:String>
                 </Picker.Items>
             </Picker>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" Padding="40,10,40,10">
+        </FlexLayout>
+        <FlexLayout Padding="10" JustifyContent="Center">
             <Button Text="ANULUJ" Clicked="CancelClicked" HorizontalOptions="CenterAndExpand"/>
             <Button Text="ZAPISZ" Clicked="AddClicked" HorizontalOptions="CenterAndExpand"/>
-            <Button Padding="10" Text="ZAPISZ++" Clicked="AddPlusClicked" HorizontalOptions="CenterAndExpand"/>
-        </StackLayout>
+        </FlexLayout>
     </StackLayout>
-</ContentPage>
+</pages:PopupPage>
