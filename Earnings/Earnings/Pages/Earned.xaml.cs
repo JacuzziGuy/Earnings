@@ -4,6 +4,7 @@ using Earnings.Models;
 using SQLite;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Rg.Plugins.Popup.Services;
 
 namespace Earnings.Pages
 {
@@ -64,7 +65,7 @@ namespace Earnings.Pages
 		}
 		private void AddClicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new NavigationPage(new EarningAdd(earns)));
+			PopupNavigation.Instance.PushAsync(new EarningAdd(earns));
 		}
 
 		private void RemoveClicked(object sender, EventArgs e)

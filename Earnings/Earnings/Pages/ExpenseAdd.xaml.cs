@@ -48,12 +48,10 @@ namespace Earnings.Pages
 		{
 			_day = int.Parse(day.SelectedItem.ToString());
 		}
-
 		private void month_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_month = int.Parse(month.SelectedItem.ToString());
 		}
-
 		private void year_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_year = int.Parse(year.SelectedItem.ToString());

@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Earnings.Pages.ExpenseAdd">
+    
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White" Margin="40">
         <Label Text="Nowy wydatek" FontSize="Medium" TextColor="White" BackgroundColor="#669900" Padding="8"/>
         <FlexLayout Padding="15,5,15,-5">
@@ -92,4 +93,5 @@
             <Button Text="ZAPISZ" Clicked="AddClicked" HorizontalOptions="CenterAndExpand"/>
         </FlexLayout>
     </StackLayout>
+    
 </pages:PopupPage>

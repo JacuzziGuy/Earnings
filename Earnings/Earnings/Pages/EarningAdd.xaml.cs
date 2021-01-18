@@ -3,10 +3,12 @@ using Earnings.Models;
 using System;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 
 namespace Earnings.Pages
 {
-	public partial class EarningAdd : ContentPage
+	public partial class EarningAdd : PopupPage
 	{
 		int _paid = 0, _time = 0, _day = DateTime.Now.Day, _month = DateTime.Now.Month, _year = DateTime.Now.Year;
 		ObservableCollection<EarningsModel> _earns = new ObservableCollection<EarningsModel>();
@@ -30,11 +32,11 @@ namespace Earnings.Pages
 			Total.e += cash;
 			db.Insert(earn);
 			_earns.Add(earn);
-			Navigation.PopModalAsync();
+			PopupNavigation.Instance.PopAsync();
 		}
 		private void CancelClicked(object sender, EventArgs e)
 		{
-			Navigation.PopModalAsync();
+			PopupNavigation.Instance.PopAsync();
 		}
 		private void paid_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -55,6 +57,10 @@ namespace Earnings.Pages
 		private void year_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_year = int.Parse(year.SelectedItem.ToString());
+		}
+		protected override bool OnBackgroundClicked()
+		{
+			return false;
 		}
 	}
 }
