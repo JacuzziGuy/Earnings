@@ -6,10 +6,10 @@
              mc:Ignorable="d"
              x:Class="Earnings.Pages.Total"
              Title="Saldo">
-    <StackLayout VerticalOptions="CenterAndExpand">
+    <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="SpaceAround" Margin="50,100,50,100">
         <Label x:Name="earned" FontSize="Large" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
         <Label x:Name="spent" FontSize="Large" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
         <Label x:Name="addons" FontSize="Large" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
         <Label x:Name="current" FontSize="Large" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
-    </StackLayout>
+    </FlexLayout>
 </ContentPage>

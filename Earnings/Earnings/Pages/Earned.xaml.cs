@@ -35,9 +35,9 @@ namespace Earnings.Pages
 		{
 			earningsList.ItemsSource = earns;
 			earningsList.ItemTapped += ShowHidden;
+			
 			Total.e = earns.Sum(x=>x.Cash);
 		}
-
 		private void ShowHidden(object sender, ItemTappedEventArgs e)
 		{
 			var item = e.Item as EarningsModel;
@@ -67,7 +67,6 @@ namespace Earnings.Pages
 		{
 			PopupNavigation.Instance.PushAsync(new EarningAdd(earns));
 		}
-
 		private void RemoveClicked(object sender, EventArgs e)
 		{
 			Total.e -= selectedEarn.Cash;

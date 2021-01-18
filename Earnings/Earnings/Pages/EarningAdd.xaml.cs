@@ -44,6 +44,7 @@ namespace Earnings.Pages
 		private void paid_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_paid = int.Parse(paid.SelectedItem.ToString().Replace("zł", ""));
+			time.Focus();
 		}
 		private void time_SelectedIndexChanged(object sender, EventArgs e)
 		{

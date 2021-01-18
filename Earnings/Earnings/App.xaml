@@ -7,10 +7,8 @@
              x:Class="Earnings.App">
     <Application.Resources>
         <ResourceDictionary>
-
-            <Color x:Key="NavigationPrimary">#669900</Color>
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarBackgroundColor" Value="#669900" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
         </ResourceDictionary>
